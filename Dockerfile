@@ -1,8 +1,14 @@
-# Use the official PHP image with Apache
+# Use official PHP Apache image
 FROM php:8.2-apache
 
-# Copy your PHP file into the Apache web root
+# Enable Apache mod_rewrite
+RUN a2enmod rewrite
+
+# Copy your PHP files into the container
 COPY . /var/www/html/
 
-# Expose port 80
+# Set working directory
+WORKDIR /var/www/html
+
+# Expose port 80 (important for Render to detect)
 EXPOSE 80
